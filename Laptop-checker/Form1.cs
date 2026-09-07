@@ -1,17 +1,31 @@
 using System;
 using System.Windows.Forms;
 using System.Management;
+using System.Collections.Generic;
 
 namespace Laptop_checker
 {
     public partial class MainForm : Form
     {
-        // Designer expects this to be a TextBox control
-        private TextBox textRAM;
+        private readonly string[] Departments = new[]
+        {
+            "Bidang Pemerintahan Desa",
+            "Bidang Pembangunan Ekonomi dan Pendapatan Desa",
+            "Bidang Sarana Prasarana dan Kewilayahan",
+            "Bidang Pemberdayaan Masyarakat Desa"
+        };
 
         public MainForm()
         {
             InitializeComponent();
+            InitializeDepartment();
+        }
+
+        private void InitializeDepartment()
+        {
+            comboBoxDepartment.Items.Clear();
+            comboBoxDepartment.Items.AddRange(Departments);
+            comboBoxDepartment.SelectedIndex = 0;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -24,82 +38,61 @@ namespace Laptop_checker
 
         }
 
-        private string GetCPU()
-        {
-            using (ManagementObjectSearcher searcher =
-                   new ManagementObjectSearcher(
-                       "SELECT Name FROM Win32_Processor"))
-            {
-                foreach (ManagementObject cpu in searcher.Get())
-                {
-                    return cpu["Name"]?.ToString() ?? "Unknown";
-                }
-            }
-
-            return "Unknown";
-        }
-
-        private string GetRAM()
-        {
-            using (ManagementObjectSearcher searcher =
-                   new ManagementObjectSearcher(
-                       "SELECT TotalPhysicalMemory FROM Win32_ComputerSystem"))
-            {
-                foreach (ManagementObject computer in searcher.Get())
-                {
-                    if (computer["TotalPhysicalMemory"] != null)
-                    {
-                        double bytes = Convert.ToDouble(
-                            computer["TotalPhysicalMemory"]
-                        );
-
-                        double gigabytes = bytes / 1024 / 1024 / 1024;
-
-                        return $"{Math.Round(gigabytes, 0)} GB";
-                    }
-                }
-            }
-
-            return "Unknown";
-        }
-
-        private string GetGPU()
-        {
-            using (ManagementObjectSearcher searcher =
-                   new ManagementObjectSearcher(
-                       "SELECT Name FROM Win32_VideoController"))
-            {
-                List<string> gpus = new List<string>();
-
-                foreach (ManagementObject gpu in searcher.Get())
-                {
-                    if (gpu["Name"] != null)
-                    {
-                        gpus.Add(gpu["Name"].ToString());
-                    }
-                }
-
-                return string.Join(", ", gpus);
-            }
-        }
-
         private void btnScan_Click(object sender, EventArgs e)
         {
-            textDeviceName.Text = Environment.MachineName;
+        }
 
-            using (ManagementObjectSearcher searcher =
-            new ManagementObjectSearcher("SELECT Manufacturer, Model FROM Win32_ComputerSystem"))
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            string userName = textUserName.Text.Trim();
+
+            if (string.IsNullOrEmpty(userName))
             {
-                foreach (ManagementObject computer in searcher.Get())
-                {
-                    textManufacturer.Text = computer["Manufacturer"]?.ToString() ?? "Unknown";
-                    textModel.Text = computer["Model"]?.ToString() ?? "Unknown";
-                }
+                MessageBox.Show(
+                    "Nama pengguna wajib diisi!",
+                    "Peringatan",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                textUserName.Focus();
+                return;
             }
 
-            textCPU.Text = GetCPU();
-            textRAM.Text = GetRAM();
-            textGPU.Text = GetGPU();
+            string department = comboBoxDepartment.SelectedItem?.ToString()
+                ?? comboBoxDepartment.Text;
+
+            if (string.IsNullOrWhiteSpace(department))
+            {
+                MessageBox.Show(
+                    "Silakan pilih bidang terlebih dahulu!",
+                    "Peringatan",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
+
+            DashboardForm dashboard = new DashboardForm(userName, department);
+
+            dashboard.Show();
+
+            this.Hide();
+        }
+
+        private void panelRegister_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
