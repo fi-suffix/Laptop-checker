@@ -28,180 +28,138 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            label5 = new Label();
-            label6 = new Label();
-            label7 = new Label();
-            btnScan = new Button();
-            textDeviceName = new TextBox();
-            textCPU = new TextBox();
-            textRAM = new TextBox();
-            textGPU = new TextBox();
-            textModel = new TextBox();
-            textManufacturer = new TextBox();
+            labelTitle = new Label();
+            panelRegister = new Panel();
+            btnRegister = new Button();
+            textUserName = new TextBox();
+            labelName = new Label();
+            labelDepartment = new Label();
+            comboBoxDepartment = new ComboBox();
+            labelDescription = new Label();
+            labelSubtitle = new Label();
+            panelRegister.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
+            // labelTitle
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(314, 41);
-            label1.Name = "label1";
-            label1.Size = new Size(145, 15);
-            label1.TabIndex = 0;
-            label1.Text = "LAPTOP DEVICE CHECKER";
-            label1.Click += label1_Click;
+            labelTitle.AutoSize = true;
+            labelTitle.Font = new Font("Microsoft Sans Serif", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelTitle.Location = new Point(218, 33);
+            labelTitle.Name = "labelTitle";
+            labelTitle.Size = new Size(344, 29);
+            labelTitle.TabIndex = 0;
+            labelTitle.Text = "LAPTOP DEVICE CHECKER";
+            labelTitle.TextAlign = ContentAlignment.TopCenter;
+            labelTitle.Click += label1_Click;
             // 
-            // label2
+            // panelRegister
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(51, 104);
-            label2.Name = "label2";
-            label2.Size = new Size(77, 15);
-            label2.TabIndex = 1;
-            label2.Text = "Device Name";
+            panelRegister.Controls.Add(btnRegister);
+            panelRegister.Controls.Add(comboBoxDepartment);
+            panelRegister.Controls.Add(labelDepartment);
+            panelRegister.Controls.Add(textUserName);
+            panelRegister.Controls.Add(labelName);
+            panelRegister.Controls.Add(labelDescription);
+            panelRegister.Controls.Add(labelSubtitle);
+            panelRegister.Controls.Add(labelTitle);
+            panelRegister.Location = new Point(12, 12);
+            panelRegister.Name = "panelRegister";
+            panelRegister.Size = new Size(776, 426);
+            panelRegister.TabIndex = 1;
+            panelRegister.Paint += panelRegister_Paint;
             // 
-            // label3
+            // btnRegister
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(51, 238);
-            label3.Name = "label3";
-            label3.Size = new Size(33, 15);
-            label3.TabIndex = 2;
-            label3.Text = "RAM";
-            label3.Click += label3_Click;
+            btnRegister.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnRegister.Location = new Point(266, 358);
+            btnRegister.Name = "btnRegister";
+            btnRegister.Size = new Size(233, 61);
+            btnRegister.TabIndex = 5;
+            btnRegister.Text = "Daftarkan Device";
+            btnRegister.UseVisualStyleBackColor = true;
+            btnRegister.Click += btnRegister_Click;
             // 
-            // label4
+            // textUserName
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(51, 203);
-            label4.Name = "label4";
-            label4.Size = new Size(30, 15);
-            label4.TabIndex = 3;
-            label4.Text = "CPU";
+            textUserName.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textUserName.Location = new Point(228, 262);
+            textUserName.Name = "textUserName";
+            textUserName.Size = new Size(316, 33);
+            textUserName.TabIndex = 4;
             // 
-            // label5
+            // labelDepartment
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(51, 169);
-            label5.Name = "label5";
-            label5.Size = new Size(41, 15);
-            label5.TabIndex = 4;
-            label5.Text = "Model";
+            labelDepartment.AutoSize = true;
+            labelDepartment.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelDepartment.Location = new Point(228, 294);
+            labelDepartment.Name = "labelDepartment";
+            labelDepartment.Size = new Size(210, 21);
+            labelDepartment.TabIndex = 6;
+            labelDepartment.Text = "Bidang / Departemen:";
             // 
-            // label6
+            // comboBoxDepartment
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(51, 139);
-            label6.Name = "label6";
-            label6.Size = new Size(79, 15);
-            label6.TabIndex = 5;
-            label6.Text = "Manufacturer";
+            comboBoxDepartment.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxDepartment.Font = new Font("Segoe UI", 11.25F);
+            comboBoxDepartment.ItemHeight = 31;
+            comboBoxDepartment.Location = new Point(228, 316);
+            comboBoxDepartment.Name = "comboBoxDepartment";
+            comboBoxDepartment.Size = new Size(316, 36);
+            comboBoxDepartment.TabIndex = 6;
             // 
-            // label7
+            // labelName
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(51, 275);
-            label7.Name = "label7";
-            label7.Size = new Size(30, 15);
-            label7.TabIndex = 6;
-            label7.Text = "GPU";
+            labelName.AutoSize = true;
+            labelName.Location = new Point(228, 244);
+            labelName.Name = "labelName";
+            labelName.Size = new Size(96, 15);
+            labelName.TabIndex = 3;
+            labelName.Text = "Nama Pengguna";
+            labelName.Click += label1_Click_1;
             // 
-            // btnScan
+            // labelDescription
             // 
-            btnScan.BackColor = SystemColors.GrayText;
-            btnScan.Location = new Point(291, 353);
-            btnScan.Name = "btnScan";
-            btnScan.Size = new Size(182, 60);
-            btnScan.TabIndex = 7;
-            btnScan.Text = "Scan Device Now";
-            btnScan.UseVisualStyleBackColor = false;
-            btnScan.Click += btnScan_Click;
+            labelDescription.AutoSize = true;
+            labelDescription.Location = new Point(236, 174);
+            labelDescription.Name = "labelDescription";
+            labelDescription.Size = new Size(298, 15);
+            labelDescription.TabIndex = 2;
+            labelDescription.Text = "Sebelum mulai, mohon masukan nama terlebih dahulu";
             // 
-            // textDeviceName
+            // labelSubtitle
             // 
-            textDeviceName.Location = new Point(252, 104);
-            textDeviceName.Name = "textDeviceName";
-            textDeviceName.Size = new Size(339, 23);
-            textDeviceName.TabIndex = 8;
-            // 
-            // textCPU
-            // 
-            textCPU.Location = new Point(252, 203);
-            textCPU.Name = "textCPU";
-            textCPU.Size = new Size(339, 23);
-            textCPU.TabIndex = 9;
-            // 
-            // textRAM
-            // 
-            textRAM.Location = new Point(252, 238);
-            textRAM.Name = "textRAM";
-            textRAM.Size = new Size(339, 23);
-            textRAM.TabIndex = 10;
-            // 
-            // textGPU
-            // 
-            textGPU.Location = new Point(252, 275);
-            textGPU.Name = "textGPU";
-            textGPU.Size = new Size(339, 23);
-            textGPU.TabIndex = 11;
-            // 
-            // textModel
-            // 
-            textModel.Location = new Point(252, 169);
-            textModel.Name = "textModel";
-            textModel.Size = new Size(339, 23);
-            textModel.TabIndex = 12;
-            // 
-            // textManufacturer
-            // 
-            textManufacturer.Location = new Point(252, 136);
-            textManufacturer.Name = "textManufacturer";
-            textManufacturer.Size = new Size(339, 23);
-            textManufacturer.TabIndex = 13;
+            labelSubtitle.AutoSize = true;
+            labelSubtitle.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelSubtitle.Location = new Point(313, 83);
+            labelSubtitle.Name = "labelSubtitle";
+            labelSubtitle.Size = new Size(138, 20);
+            labelSubtitle.TabIndex = 1;
+            labelSubtitle.Text = "Device Registration";
+            labelSubtitle.Click += label2_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(textManufacturer);
-            Controls.Add(textModel);
-            Controls.Add(textGPU);
-            Controls.Add(textRAM);
-            Controls.Add(textCPU);
-            Controls.Add(textDeviceName);
-            Controls.Add(btnScan);
-            Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(panelRegister);
             Name = "MainForm";
             Text = "Laptop Device Checker";
+            panelRegister.ResumeLayout(false);
+            panelRegister.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private Label label5;
-        private Label label6;
-        private Label label7;
-        private Button btnScan;
-        private TextBox textDeviceName;
-        private TextBox textCPU;
         private TextBox textBox3;
-        private TextBox textGPU;
-        private TextBox textModel;
-        private TextBox textManufacturer;
+        private Label labelTitle;
+        private Panel panelRegister;
+        private Label labelSubtitle;
+        private Label labelDescription;
+        private Label labelName;
+        private TextBox textUserName;
+        private Label labelDepartment;
+        private ComboBox comboBoxDepartment;
+        private Button btnRegister;
     }
 }
