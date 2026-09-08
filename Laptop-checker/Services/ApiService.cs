@@ -24,7 +24,7 @@ namespace Laptop_checker
 
         private void LoadConfig()
         {
-            _baseUrl = "http://localhost:8000";
+            _baseUrl = "http://localhost:3001";
             _devicesEndpoint = "api/devices";
 
             try
